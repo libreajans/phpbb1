@@ -1,1 +1,98 @@
-see docs/INSTALL
+Thank you for choosing phpBB as your forum software. 
+
+An install of phpBB should be very painless. First you will need
+the following.
+
+1 Webserver w/PHP 3.0.15 or greater  (Apache is know to work very well with phpBB)
+1 MySQL server (phpBB has been tested on 3.22 and 3.23)
+1 Admin crazy enough to run a forum (That would be you :) )
+
+Installation
+------------------------
+
+-------------------------------------------------------------------------
+NOTE: If you are running a Windows machine please skip down to the 'Notes
+for installing phpBB on Windows systems runing Apache' Section! If you have 
+problems with a Windows install you will be reffered to this document 
+befor any other support is given!
+-------------------------------------------------------------------------
+
+Step 1: Untar the soure into the directory phpBB will run from. Seeing as you
+are reading this file you have probably gotten that far. (Or if you are on a
+different machine then your webserver FTP the resulting phpBB dir over to where
+it will run from on the server. ie /www/yourdomain.com/phpBB)
+
+Step 2: Edit config.php and change the following values:
+$url_images = "http://$SERVER_NAME/phpBB/images"; 
+$url_phpbb = "http://$SERVER_NAME/phpBB"; 
+$url_admin = "http://$SERVER_NAME/phpBB/admin"; 
+
+$cookiedomain = "www.yourdomain.com";
+$cookiename = "phpBB";
+$cookiepath = "/phpBB";
+$cookiesecure = false;
+
+The $url_* fields may work for you if you're running phpBB from a domain 
+like this: http://www.phpbb.com/phpBB
+
+However if you access phpBB like this: http://www.domain.com/~you/phpBB you will 
+have to change these values.
+
+Also, config.php MUST be writeable by the webserver or the install will fail.
+To set this on UNIX systems you can use chmod
+ie: chmod 777 config.php (after the install if finsished set it back to 755 
+via chmod 755 config.php so it can't be written by anyone again.)
+
+Step 3: Edit extention.inc and set $phpEx to the extention of all your phpBB files.
+ie. if all your files end in .php then extention.inc would include
+
+$phpEx = "php";
+
+DO NOT put the . in.
+
+Step 4: Run install.php by going to http://www.youdomain.com/phpBB/install.php
+
+Step 5: Go to the admin panel and setup your categories, 
+forums, ranks, etc etc.
+
+Thats it. You should now have a working installation of phpBB.
+
+--------------------------------------------------------------------------
+Notes for installing phpBB on Windows Systems running Apache.
+
+First, thanks to our Windows using bug hunter David Tod Sigafoos for
+coming up with this solution.
+
+phpBB will only function correctly when PHP4 is installed as an ISAPI Apache
+module, here are instuctions for installing it as such:
+
+1) Stop your apache server
+
+2) Download php 4.0.3pl1 from php.net.  Download the isapi version
+from here http://www.php.net/downloads.php
+
+3) Unzip php into your directory (for me it was c:\php)
+
+4) Copy the php4ts.dll into the windows\system directory.  (there
+should only be one in system or system32)
+
+In http.conf
+
+5) In apache http.conf find the loadmodule section and add this line
+LoadModule php4_module c:/php/sapi/php4apache.dll
+
+6) Be sure you have the AddType for php
+
+If you have any other problems installing on Windows please visit the
+support forums at http://www.phpbb.com/phpBB/
+
+--------------------------------------------------------------------------
+
+
+Any questions/comments can be posted at our offical support forums at:
+http://www.phpbb.com/phpBB/index.php
+Or by emailing support@phpbb.com
+
+Thank you.
+The phpBB Group
+
